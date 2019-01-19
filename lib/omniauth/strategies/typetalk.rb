@@ -4,9 +4,9 @@ module OmniAuth
   module Strategies
     class Typetalk < OmniAuth::Strategies::OAuth2
       option :client_options, {
-        :site => 'https://typetalk.com',
+        :site          => 'https://typetalk.com',
         :authorize_url => 'https://typetalk.com/oauth2/authorize',
-        :token_url => 'https://typetalk.com/oauth2/access_token',
+        :token_url     => 'https://typetalk.com/oauth2/access_token',
       }
 
       def request_phase
@@ -25,7 +25,16 @@ module OmniAuth
 
       info do
         {
-          'name' => raw_info['account']['name']
+          'id'         => raw_info['account']['id'],
+          'name'       => raw_info['account']['name'],
+          'fullName'   => raw_info['account']['fullName'],
+          'suggestion' => raw_info['account']['suggestion'],
+          'imageUrl'   => raw_info['account']['imageUrl'],
+          'isBot'      => raw_info['account']['isBot'],
+          'lang'       => raw_info['account']['lang'],
+          'timezoneId' => raw_info['account']['timezoneId'],
+          'createdAt'  => raw_info['account']['createdAt'],
+          'updatedAt'  => raw_info['account']['updatedAt'],
         }
       end
 
