@@ -65,7 +65,7 @@ describe OmniAuth::Strategies::Typetalk do
 
   context '#info.name' do
     it 'should use name from raw_info' do
-      allow(subject).to receive(:raw_info).and_return({ 'name' => 'is2ei' })
+      allow(subject).to receive(:raw_info).and_return({ 'account' => { 'name' => 'is2ei' }})
       expect(subject.info['name']).to eq('is2ei')
     end
   end
