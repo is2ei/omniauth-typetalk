@@ -1,6 +1,10 @@
 omniauth-typetalk
 ===
 
+[![Build Status](https://travis-ci.org/is2ei/omniauth-typetalk.svg?branch=master)][travis]
+
+[travis]: https://travis-ci.org/is2ei/omniauth-typetalk
+
 Typetalk OAuth2 Strategy for OmniAuth
 
 ## Basic Usage
