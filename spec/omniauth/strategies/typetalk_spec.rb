@@ -74,7 +74,6 @@ describe OmniAuth::Strategies::Typetalk do
     it 'is a combination of host, script name, and callback path' do
       allow(subject).to receive(:full_host).and_return('https://example.com')
       allow(subject).to receive(:script_name).and_return('/sub_uri')
-
       expect(subject.callback_url).to eq('https://example.com/sub_uri/auth/typetalk/callback')
     end
   end
