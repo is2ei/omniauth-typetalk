@@ -1,0 +1,5 @@
+## TEST
+
+```
+$ rake spec
+```
