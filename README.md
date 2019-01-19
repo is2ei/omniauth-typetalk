@@ -2,8 +2,10 @@ omniauth-typetalk
 ===
 
 [![Build Status](https://travis-ci.org/is2ei/omniauth-typetalk.svg?branch=master)][travis]
+[![Gem Version](https://img.shields.io/gem/v/omniauth-typetalk.svg)][rubygems]
 
 [travis]: https://travis-ci.org/is2ei/omniauth-typetalk
+[rubygems]: https://rubygems.org/gems/omniauth-typetalk
 
 Typetalk OAuth2 Strategy for OmniAuth
 
