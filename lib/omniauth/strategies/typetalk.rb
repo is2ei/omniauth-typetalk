@@ -25,7 +25,7 @@ module OmniAuth
 
       info do
         {
-          'name' => raw_info['name'] 
+          'name' => raw_info['account']['name']
         }
       end
 
