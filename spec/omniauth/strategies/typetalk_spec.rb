@@ -1,31 +1,8 @@
 require 'spec_helper'
 
 describe OmniAuth::Strategies::Typetalk do
-  let(:access_token) { instance_double('AccessToken', :optinons => {}) }
-  let(:parsed_response) { instance_double('ParsedResponse') }
-  let(:response) { instance_double('Response', :parsed => parsed_response) }
-
-  let(:localhost_site) { 'http://localhost/api/' }
-  let(:localhost_authorize_url) { 'http://localhost/oauth2/authorize' }
-  let(:localhost_token_url) { 'http://localhost/oauth2/access_token' }
-  let(:localhost) do
-    OmniAuth::Strategies::Typetalk.new('TYPETALK_KEY', 'TYPETALK_SECRET',
-        {
-            :client_options => {
-                :site => localhost_site,
-                :authorize_url => localhost_authorize_url,
-                :token_url => localhost_token_url,
-            }
-        }
-    )
-  end
-
   subject do
     OmniAuth::Strategies::Typetalk.new({})
-  end
-
-  before(:each) do
-    allow(subject).to receive(:access_token).and_return(access_token)
   end
 
   context 'client options' do
@@ -40,34 +17,80 @@ describe OmniAuth::Strategies::Typetalk do
     it 'should have correct token url' do
       expect(subject.options.client_options.token_url).to eq('https://typetalk.com/oauth2/access_token')
     end
+  end
+end
 
-    describe 'should be overrideable' do
-      it 'for site' do
-        expect(localhost.options.client_options.site).to eq(localhost_site)
-      end
+describe OmniAuth::Strategies::Typetalk do
+  let(:localhost_site) { 'http://localhost/api/' }
+  let(:localhost_authorize_url) { 'http://localhost/oauth2/authorize' }
+  let(:localhost_token_url) { 'http://localhost/oauth2/access_token' }
+  let(:localhost) do
+    OmniAuth::Strategies::Typetalk.new('TYPETALK_KEY', 'TYPETALK_SECRET',
+      client_options: {
+        site: localhost_site,
+        authorize_url: localhost_authorize_url,
+        token_url: localhost_token_url
+      })
+  end
 
-      it 'for authorize url' do
-        expect(localhost.options.client_options.authorize_url).to eq(localhost_authorize_url)
-      end
-
-      it 'for token url' do
-        expect(localhost.options.client_options.token_url).to eq(localhost_token_url)
-      end
+  describe 'client options should be overrideable' do
+    it 'for site' do
+      expect(localhost.options.client_options.site).to eq(localhost_site)
     end
+
+    it 'for authorize url' do
+      expect(localhost.options.client_options.authorize_url)
+        .to eq(localhost_authorize_url)
+    end
+
+    it 'for token url' do
+      expect(localhost.options.client_options.token_url)
+        .to eq(localhost_token_url)
+    end
+  end
+end
+
+describe OmniAuth::Strategies::Typetalk do
+  let(:access_token) { instance_double('AccessToken', optinons: {}) }
+  let(:parsed_response) { instance_double('ParsedResponse') }
+  let(:response) { instance_double('Response', parsed: parsed_response) }
+
+  subject do
+    OmniAuth::Strategies::Typetalk.new({})
+  end
+
+  before(:each) do
+    allow(subject).to receive(:access_token).and_return(access_token)
   end
 
   context '#raw_info' do
     it 'should use relative paths' do
-      expect(access_token).to receive(:get).with('api/v1/profile').and_return(response)
+      expect(access_token)
+        .to receive(:get)
+        .with('api/v1/profile').and_return(response)
       expect(subject.raw_info).to eq(parsed_response)
     end
+  end
+end
+
+describe OmniAuth::Strategies::Typetalk do
+  subject do
+    OmniAuth::Strategies::Typetalk.new({})
   end
 
   context '#info.name' do
     it 'should use name from raw_info' do
-      allow(subject).to receive(:raw_info).and_return({ 'account' => { 'name' => 'is2ei' }})
+      allow(subject)
+        .to receive(:raw_info)
+        .and_return('account' => { 'name' => 'is2ei' })
       expect(subject.info['name']).to eq('is2ei')
     end
+  end
+end
+
+describe OmniAuth::Strategies::Typetalk do
+  subject do
+    OmniAuth::Strategies::Typetalk.new({})
   end
 
   describe '#callback_url' do
