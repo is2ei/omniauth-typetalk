@@ -5,9 +5,9 @@ module OmniAuth
     # Typetalk handles Oauth2 authentication with Typetalk.
     class Typetalk < OmniAuth::Strategies::OAuth2
       option :client_options,
-          site: 'https://typetalk.com',
-          authorize_url: 'https://typetalk.com/oauth2/authorize',
-          token_url: 'https://typetalk.com/oauth2/access_token'
+             site: 'https://typetalk.com',
+             authorize_url: 'https://typetalk.com/oauth2/authorize',
+             token_url: 'https://typetalk.com/oauth2/access_token'
 
       def request_phase
         super

@@ -26,11 +26,11 @@ describe OmniAuth::Strategies::Typetalk do
   let(:localhost_token_url) { 'http://localhost/oauth2/access_token' }
   let(:localhost) do
     OmniAuth::Strategies::Typetalk.new('TYPETALK_KEY', 'TYPETALK_SECRET',
-      client_options: {
-        site: localhost_site,
-        authorize_url: localhost_authorize_url,
-        token_url: localhost_token_url
-      })
+                                       client_options: {
+                                         site: localhost_site,
+                                         authorize_url: localhost_authorize_url,
+                                         token_url: localhost_token_url
+                                       })
   end
 
   describe 'client options should be overrideable' do
